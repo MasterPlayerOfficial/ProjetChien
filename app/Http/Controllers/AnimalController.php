@@ -12,6 +12,19 @@ use Carbon\Carbon;
 
 class AnimalController extends Controller
 {
+    public function checkString(String $str)
+    {
+        $pattern = "/[0-9]/";
+        $result = preg_match($pattern, $str);
+        if($result = 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public function addAnimal(Request $request)
     {
         try
@@ -24,9 +37,36 @@ class AnimalController extends Controller
                 'lost' => $request->input('lost')
             ]);
 
+            if($animal->name != null)
+            {
+                $check = checkString($animal->name);
+                if ($check == true) 
+                {
+                    throw new InvalidArgumentException("A number has been found found within the letters");
+                }
+            }
+
             if($animal->birth != null)
             {
                 $animal->birth = Carbon::parse($animal->birth)->format('Y-m-d');
+            }
+
+            if($animal->race != null)
+            {
+                $check = checkString($animal->race);
+                if ($check == true) 
+                {
+                    throw new InvalidArgumentException("A number has been found found within the letters");
+                }
+            }
+
+            if($animal->color != null)
+            {
+                $check = checkString($animal->color);
+                if ($check == true) 
+                {
+                    throw new InvalidArgumentException("A number has been found found within the letters");
+                }
             }
 
             if($animal->lost = true)
@@ -44,6 +84,10 @@ class AnimalController extends Controller
         catch(QueryException $e)
         {
             return response()->json(['message' => 'Failed to add animal to database: ' . $e->getMessage()], 500);
+        }
+        catch(InvalidArgumentException $e)
+        {
+            return response()->json(['message' => 'An error has occured: ' . $e->getMessage()], 500);
         }
     }
 }
