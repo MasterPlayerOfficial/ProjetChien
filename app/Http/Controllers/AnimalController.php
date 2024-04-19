@@ -90,4 +90,34 @@ class AnimalController extends Controller
             return response()->json(['message' => 'An error has occured: ' . $e->getMessage()], 500);
         }
     }
+
+    public function updateAnimal(Request $request, $idAnimal)
+    {
+        try
+        {
+            $animal = Animal::findOrFail($idAnimal);
+
+            $newFields = $request->only(['name', 'birth', 'race', 'color', 'lost']);
+
+            foreach($newFields as $oldFields => $value)
+            {
+                if(!empty($value))
+                {
+                    $animal->$field = $value;
+                }
+            }
+
+            $animal->save();
+
+            return response()->json(['message' => 'Animal updated successfully', 'data' => $animal], 200);
+        }
+        catch(QueryException $e)
+        {
+            return response()->json(['message' => 'Failed to update animal in database: ' . $e->getMessage()], 500);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(['message' => 'Animal not found'], 404);
+        }
+    }
 }
