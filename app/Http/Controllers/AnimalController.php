@@ -91,6 +91,12 @@ class AnimalController extends Controller
         }
     }
 
+    public function getAnimal($idAnimal)
+    {
+        $animal = Animal::findOrFail($idAnimal);
+        return $animal;
+    }
+
     public function updateAnimal(Request $request, $idAnimal)
     {
         try
