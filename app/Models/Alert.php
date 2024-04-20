@@ -13,6 +13,7 @@ class Alert extends Model
 
     protected $fillable = [
         'idAnimal',
+        'inProgress',
         'dateStart',
         'dateEnd'
     ];
