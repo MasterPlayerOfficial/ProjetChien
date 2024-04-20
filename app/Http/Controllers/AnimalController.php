@@ -97,6 +97,23 @@ class AnimalController extends Controller
         return $animal;
     }
 
+    public function getAllAnimals()
+    {
+        $animals = Animal::all();
+        foreach($animals as $animal)
+        {
+            if($animal->lost == 1)
+            {
+                $animal->lost = true;
+            }
+            else
+            {
+                $animal->lost = false;
+            }
+            return response()->json($animals);
+        }
+    }
+
     public function updateAnimal(Request $request, $idAnimal)
     {
         try

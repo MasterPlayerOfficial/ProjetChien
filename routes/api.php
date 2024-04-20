@@ -15,6 +15,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/animal', [AnimalController::class, 'addAnimal']);
 Route::get('/animal/{idAnimal}', [AnimalController::class, 'getAnimal']);
+Route::get('/animals', [AnimalController::class, 'getAllAnimals']);
 Route::delete('/animal/{idAnimal}', [AnimalController::class, 'deleteAnimal']);
 
 Route::post('/alert', [AlertController::class, 'addAlert']);
