@@ -28,7 +28,7 @@ class AlertController extends Controller
         }
         catch(QueryException $e)
         {
-            return response()->json(['Message' => 'An error has occured: ' . $e->getMessage()], 500);
+            return response()->json(['Message' => 'An error has occured: ' . $e->getMessage()], 500);            
         }
     }
 }

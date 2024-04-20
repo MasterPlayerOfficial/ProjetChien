@@ -120,4 +120,28 @@ class AnimalController extends Controller
             return response()->json(['message' => 'Animal not found'], 404);
         }
     }
+
+    public function deleteAnimal($idAnimal)
+    {
+        try
+        {
+            $animal = Animal::findOrFail($idAnimal);
+            $alerts = Alert::where('idAnimal',$animal->$idAnimal)->get();
+
+            if ($alerts != null)
+            {
+                foreach ($alerts as $alert)
+                {
+                    $alert->delete();
+                }
+            }
+
+            $animal->delete();
+            return response()->json(true);
+        }
+        catch(QueryException $e)
+        {
+            return response()->json(['message' => 'Failed to delete animal in database: ' . $e->getMessage()], 500);
+        }
+    }
 }
