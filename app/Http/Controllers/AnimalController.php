@@ -178,7 +178,7 @@ class AnimalController extends Controller
           $animal->lost = $animalStatus['lost'];
 
           $animal->save();
-          return response()->json(true);
+          return response()->json(['message' => 'Animal updated successfully', 'data' => $animal], 200);
         }
         catch(QueryException $e)
         {
