@@ -167,4 +167,33 @@ class AnimalController extends Controller
             return response()->json(['message' => 'Failed to delete animal in database: ' . $e->getMessage()], 500);
         }
     }
+
+    public function changeLostStatus($idAnimal)
+    {
+        try
+        {
+          $animal = Animal::findOrFail($idAnimal);
+          
+          if($animal->lost == 1)
+          {
+            $animal->lost = 0;
+            $animal->save();
+            return response()->json(false);
+          }
+          else
+          {
+            $animal->lost = 1;
+            $animal->save();
+            return response()->json(true);
+          }
+        }
+        catch(QueryException $e)
+        {
+            return response()->json(['message' => 'Failed to change the status of the animal: ' . $e->getMessage()], 500);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(['message' => 'Animal not found: ' . $e->getMessage()], 404);
+        }
+    }
 }
