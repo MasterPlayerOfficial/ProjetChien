@@ -34,7 +34,7 @@ class AnimalController extends Controller
                 'birth' => $request->input('birth'),
                 'race' => $request->input('race'),
                 'color' => $request->input('color'),
-                'lost' => $request->input('lost')
+                'lost' => $request->boolean('lost')
             ]);
 
             if($animal->name != null)
