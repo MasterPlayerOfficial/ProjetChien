@@ -79,7 +79,7 @@ class AnimalController extends Controller
             }
 
             $animal->save();
-            return response()->json($animal->idAnimal);
+            return response()->json(true);
         }
         catch(QueryException $e)
         {
