@@ -25,6 +25,7 @@ class AnimalController extends Controller
             return false;
         }
     }
+
     public function addAnimal(Request $request)
     {
         try
@@ -168,24 +169,16 @@ class AnimalController extends Controller
         }
     }
 
-    public function changeLostStatus($idAnimal)
+    public function changeLostStatus($idAnimal, Request $request)
     {
         try
         {
-          $animal = Animal::findOrFail($idAnimal);
-          
-          if($animal->lost == 1)
-          {
-            $animal->lost = 0;
-            $animal->save();
-            return response()->json(false);
-          }
-          else
-          {
-            $animal->lost = 1;
-            $animal->save();
-            return response()->json(true);
-          }
+          $animal = Animal::findOrFail($idAnimal);         
+          $animalStatus = $request->only(['lost']);
+          $animal->lost = $animalStatus['lost'];
+
+          $animal->save();
+          return response()->json(true);
         }
         catch(QueryException $e)
         {
