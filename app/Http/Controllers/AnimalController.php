@@ -114,7 +114,7 @@ class AnimalController extends Controller
         }
     }
 
-    public function updateAnimal(Request $request, $idAnimal)
+    public function updateAnimal($idAnimal, Request $request)
     {
         try
         {
