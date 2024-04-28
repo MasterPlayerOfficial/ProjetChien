@@ -21,4 +21,4 @@ Route::delete('/animal/{idAnimal}', [AnimalController::class, 'deleteAnimal']);
 
 Route::post('/alert', [AlertController::class, 'addAlert']);
 Route::get('/alert/{idAlert}', [AlertController::class, 'getAlert']);
-Route::put('/alert/{idAlert}', [AlertController::class, 'updateAlert']);
+Route::put('/alert/{idAnimal}', [AlertController::class, 'updateAlert']);
