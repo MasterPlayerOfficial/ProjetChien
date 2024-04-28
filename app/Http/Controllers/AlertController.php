@@ -32,11 +32,11 @@ class AlertController extends Controller
         }
     }
 
-    public function getAlert($idAlert)
+    public function getAlert($idAnimal)
     {
         try
         {
-            $alert = Alert::findOrFail($idAlert);
+            $alert = Alert::where('idAnimal', $idAnimal)->where('inProgress', true)->first();
             return $alert;
         }
         catch (\Exception $e)
