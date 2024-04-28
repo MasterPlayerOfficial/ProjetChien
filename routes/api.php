@@ -18,6 +18,5 @@ Route::get('/animal/{idAnimal}', [AnimalController::class, 'getAnimal']);
 Route::get('/animals', [AnimalController::class, 'getAllAnimals']);
 Route::put('/animal/{idAnimal}', [AnimalController::class, 'updateAnimal']);
 Route::delete('/animal/{idAnimal}', [AnimalController::class, 'deleteAnimal']);
-Route::put('/animal/{idAnimal}', [AnimalController::class, 'changeLostStatus']);
 
 Route::post('/alert', [AlertController::class, 'addAlert']);
