@@ -31,4 +31,17 @@ class AlertController extends Controller
             return response()->json(['Message' => 'An error has occured: ' . $e->getMessage()], 500);            
         }
     }
+
+    public function getAlert($idAlert)
+    {
+        try
+        {
+            $alert = Alert::findOrFail($idAlert);
+            return $alert;
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['Message' => 'Alert not found'], 404);
+        }
+    }
 }

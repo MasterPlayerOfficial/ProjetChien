@@ -94,8 +94,15 @@ class AnimalController extends Controller
 
     public function getAnimal($idAnimal)
     {
+        try
+        {
         $animal = Animal::findOrFail($idAnimal);
         return $animal;
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['Message' => 'Animal not found'], 404);
+        }
     }
 
     public function getAllAnimals()
