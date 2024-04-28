@@ -127,8 +127,7 @@ class AnimalController extends Controller
         try
         {
             $animal = Animal::findOrFail($idAnimal);
-
-            $newFields = $request->only(['name', 'birth', 'race', 'color']);
+            $newFields = $request->only(['name', 'birth', 'race', 'color', 'lost']);
 
             foreach($newFields as $oldFields => $value)
             {

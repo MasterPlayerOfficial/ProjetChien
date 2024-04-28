@@ -44,4 +44,27 @@ class AlertController extends Controller
             return response()->json(['Message' => 'Alert not found'], 404);
         }
     }
+
+    public function updateAlert($idAlert, Request $request)
+    {
+        try
+        {
+            $alert = Alert::findOrFail($idAlert);
+            $newFields = $request->only(['inProgress', 'dateEnd']);
+
+            $alert->inProgress = $newFields['inProgress'];
+            $alert->dateEnd = Carbon::now()->format('Y-m-d');
+
+            $alert->save();
+            return response()->json(['message' => 'Alert updated successfully', 'data' => $alert], 200);
+        }
+        catch(QueryException $e)
+        {
+            return response()->json(['message' => 'Failed to update alert in database: ' . $e->getMessage()], 500);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(['message' => 'Alert not found'], 404);
+        }
+    }
 }
