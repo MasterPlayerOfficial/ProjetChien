@@ -25,7 +25,7 @@ class AlertController extends Controller
 
             $alert->save();
             $mqtt = MQTT::connection();
-            $mqtt->publish("alert", "trigger", 1, true);
+            $mqtt->publish("alert", "trigger", 2, true);
             $mqtt->loop(true, true);
 
             return response()->json(true);
