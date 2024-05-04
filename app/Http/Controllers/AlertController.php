@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use PhpWqtt\Client\Facades\MQTT;
 
 use App\Models\Alert;
 
@@ -23,6 +24,9 @@ class AlertController extends Controller
             ]);
 
             $alert->save();
+            $mqtt = MQTT::connection();
+            $mqtt->publish("alert", "trigger", 1, true);
+            $mqtt->loop(true, true);
 
             return response()->json(true);
         }
