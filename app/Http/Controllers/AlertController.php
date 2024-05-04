@@ -25,7 +25,7 @@ class AlertController extends Controller
 
             $alert->save();
             $mqtt = MQTT::connection();
-            $mqtt->publish("alert", "trigger", 2, true);
+            $mqtt->publish("alert", "trigger_start", 2, true);
             $mqtt->loop(true, true);
 
             return response()->json(true);
@@ -60,6 +60,9 @@ class AlertController extends Controller
             $alert->dateEnd = Carbon::now()->format('Y-m-d');
 
             $alert->save();
+            $mqtt = MQTT::connection();
+            $mqtt->publish("alert", "trigger_end", 2, true);
+            $mqtt->loop(true, true);
             return response()->json(['message' => 'Alert updated successfully', 'data' => $alert], 200);
         }
         catch(QueryException $e)
