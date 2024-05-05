@@ -83,7 +83,7 @@ class AnimalController extends Controller
             }
 
             $animal->save();
-            Log::info($animal->idAnimal);
+            Log::info($animal);
             return response()->json(true);
         }
         catch(QueryException $e)
