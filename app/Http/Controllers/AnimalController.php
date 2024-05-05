@@ -43,7 +43,6 @@ class AnimalController extends Controller
 
             if($animal->name != null)
             {
-                Log::info($animal->name);
                 $check = self::checkString($animal->name);
                 if ($check == true) 
                 {
@@ -84,7 +83,7 @@ class AnimalController extends Controller
             }
 
             $animal->save();
-
+            Log::info($animal->idAnimal);
             return response()->json(true);
         }
         catch(QueryException $e)
