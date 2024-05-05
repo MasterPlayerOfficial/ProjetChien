@@ -14,11 +14,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/animal', [AnimalController::class, 'addAnimal']);
-Route::get('/animal/{idAnimal}', [AnimalController::class, 'getAnimal']);
+Route::get('/animal/{id}', [AnimalController::class, 'getAnimal']);
 Route::get('/animals', [AnimalController::class, 'getAllAnimals']);
-Route::put('/animal/{idAnimal}', [AnimalController::class, 'updateAnimal']);
-Route::delete('/animal/{idAnimal}', [AnimalController::class, 'deleteAnimal']);
+Route::put('/animal/{id}', [AnimalController::class, 'updateAnimal']);
+Route::delete('/animal/{id}', [AnimalController::class, 'deleteAnimal']);
 
 Route::post('/alert', [AlertController::class, 'addAlert']);
-Route::get('/alert/{idAlert}', [AlertController::class, 'getAlert']);
-Route::put('/alert/{idAnimal}', [AlertController::class, 'updateAlert']);
+Route::get('/alert/{id}', [AlertController::class, 'getAlert']);
+Route::put('/alert/{id}', [AlertController::class, 'updateAlert']);

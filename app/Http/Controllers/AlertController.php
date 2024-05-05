@@ -36,11 +36,11 @@ class AlertController extends Controller
         }
     }
 
-    public function getAlert($idAnimal)
+    public function getAlert($id)
     {
         try
         {
-            $alert = Alert::where('idAnimal', $idAnimal)->where('inProgress', true)->first();
+            $alert = Alert::where('id', $id)->where('inProgress', true)->first();
             return $alert;
         }
         catch (\Exception $e)
@@ -49,11 +49,11 @@ class AlertController extends Controller
         }
     }
 
-    public function updateAlert($idAlert, Request $request)
+    public function updateAlert($id, Request $request)
     {
         try
         {
-            $alert = Alert::findOrFail($idAlert);
+            $alert = Alert::findOrFail($id);
             $newFields = $request->only(['inProgress', 'dateEnd']);
 
             $alert->inProgress = $newFields['inProgress'];

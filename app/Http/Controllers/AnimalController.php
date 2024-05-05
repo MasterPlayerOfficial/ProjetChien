@@ -100,11 +100,11 @@ class AnimalController extends Controller
         }
     }
 
-    public function getAnimal($idAnimal)
+    public function getAnimal($id)
     {
         try
         {
-        $animal = Animal::findOrFail($idAnimal);
+        $animal = Animal::findOrFail($id);
         return $animal;
         }
         catch (\Exception $e)
@@ -130,11 +130,11 @@ class AnimalController extends Controller
         }
     }
 
-    public function updateAnimal($idAnimal, Request $request)
+    public function updateAnimal($id, Request $request)
     {
         try
         {
-            $animal = Animal::findOrFail($idAnimal);
+            $animal = Animal::findOrFail($id);
             $newFields = $request->only(['name', 'birth', 'race', 'color', 'lost']);
 
             foreach($newFields as $oldFields => $value)
@@ -159,12 +159,12 @@ class AnimalController extends Controller
         }
     }
 
-    public function deleteAnimal($idAnimal)
+    public function deleteAnimal($id)
     {
         try
         {
-            $animal = Animal::findOrFail($idAnimal);
-            $alerts = Alert::where('idAnimal',$animal->$idAnimal)->get();
+            $animal = Animal::findOrFail($id);
+            $alerts = Alert::where('idAnimal',$animal->$id)->get();
 
             if ($alerts != null)
             {

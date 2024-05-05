@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Animal extends Model
 {
     protected $table = 'Animal';
-    protected $primaryKey = 'idAnimal';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $fillable = [
