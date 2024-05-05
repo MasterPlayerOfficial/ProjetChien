@@ -82,9 +82,13 @@ class AnimalController extends Controller
                 $animal->lost = 0;
             }
 
-            $animal->save();
-            Log::info($animal);
-            return response()->json(true);
+            $saved = $animal->save();
+            if (!$saved)
+            {
+                throw new QueryException("The query was not executed");
+            }
+
+            return response()->json($saved);
         }
         catch(QueryException $e)
         {
