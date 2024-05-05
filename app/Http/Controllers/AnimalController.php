@@ -10,6 +10,8 @@ use App\Models\Alert;
 
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Log;
+
 class AnimalController extends Controller
 {
     public function checkString(String $str)
@@ -80,6 +82,8 @@ class AnimalController extends Controller
             }
 
             $animal->save();
+
+            Log::debug($animal);
             return response()->json(true);
         }
         catch(QueryException $e)
