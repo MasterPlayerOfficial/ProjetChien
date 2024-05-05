@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Testing\Exceptions\InvalidArgumentException;
 
 use App\Models\Animal;
 use App\Models\Alert;
