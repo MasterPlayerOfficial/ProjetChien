@@ -42,7 +42,7 @@ class AnimalController extends Controller
 
             if($animal->name != null)
             {
-                $check = checkString($animal->name);
+                $check = self::checkString($animal->name);
                 if ($check == true) 
                 {
                     throw new InvalidArgumentException("A number has been found found within the letters");
@@ -56,7 +56,7 @@ class AnimalController extends Controller
 
             if($animal->race != null)
             {
-                $check = checkString($animal->race);
+                $check = self::checkString($animal->race);
                 if ($check == true) 
                 {
                     throw new InvalidArgumentException("A number has been found found within the letters");
@@ -65,7 +65,7 @@ class AnimalController extends Controller
 
             if($animal->color != null)
             {
-                $check = checkString($animal->color);
+                $check = self::checkString($animal->color);
                 if ($check == true) 
                 {
                     throw new InvalidArgumentException("A number has been found found within the letters");
