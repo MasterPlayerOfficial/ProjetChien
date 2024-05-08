@@ -104,8 +104,8 @@ class AnimalController extends Controller
     {
         try
         {
-        $animal = Animal::findOrFail($id);
-        return $animal;
+            $animal = Animal::findOrFail($id);
+            return $animal;
         }
         catch (\Exception $e)
         {
@@ -115,18 +115,25 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
-        $animals = Animal::all();
-        foreach($animals as $animal)
+        try
         {
-            if($animal->lost == 1)
+            $animals = Animal::all();
+            foreach($animals as $animal)
             {
-                $animal->lost = true;
+                if($animal->lost == 1)
+                {
+                    $animal->lost = true;
+                }
+                else
+                {
+                    $animal->lost = false;
+                }
+                return response()->json($animals);
             }
-            else
-            {
-                $animal->lost = false;
-            }
-            return response()->json($animals);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['Message' => 'An error has occured'], 500);
         }
     }
 
