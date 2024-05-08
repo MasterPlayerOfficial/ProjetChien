@@ -88,7 +88,7 @@ class AnimalController extends Controller
                 throw new QueryException("The query was not executed");
             }
 
-            return response()->json($saved);
+            return json_encode($saved);
         }
         catch(QueryException $e)
         {
@@ -128,7 +128,7 @@ class AnimalController extends Controller
                 {
                     $animal->lost = false;
                 }
-                return response()->json($animals);
+                return json_encode($animals);
             }
         }
         catch (QueryException $e)
@@ -154,7 +154,7 @@ class AnimalController extends Controller
 
             $animal->save();
 
-            return response()->json(['message' => 'Animal updated successfully', 'data' => $animal], 200);
+            return json_encode(['message' => 'Animal updated successfully', 'data' => $animal], 200);
         }
         catch(QueryException $e)
         {
@@ -182,7 +182,7 @@ class AnimalController extends Controller
             }
 
             $animal->delete();
-            return response()->json(true);
+            return json_encode(true);
         }
         catch(QueryException $e)
         {
