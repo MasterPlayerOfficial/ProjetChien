@@ -133,7 +133,7 @@ class AnimalController extends Controller
         }
         catch (QueryException $e)
         {
-            return response()->json(['Message' => 'An error has occured'], 500);
+            return json_encode(['Message' => 'An error has occured'], 500);
         }
     }
 
