@@ -28,11 +28,11 @@ class AlertController extends Controller
             $mqtt->publish("alert", "trigger_start", 2, true);
             $mqtt->loop(true, true);
 
-            return response()->json(true);
+            return json_encode(true);
         }
         catch(QueryException $e)
         {
-            return response()->json(['Message' => 'An error has occured: ' . $e->getMessage()], 500);            
+            return json_encode(['Message' => 'An error has occured: ' . $e->getMessage()], 500);            
         }
     }
 
@@ -45,7 +45,7 @@ class AlertController extends Controller
         }
         catch (\Exception $e)
         {
-            return response()->json(['Message' => 'Alert not found'], 404);
+            return json_encode(['Message' => 'Alert not found'], 404);
         }
     }
 
