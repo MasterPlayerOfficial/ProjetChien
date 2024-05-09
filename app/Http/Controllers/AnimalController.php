@@ -92,11 +92,11 @@ class AnimalController extends Controller
         }
         catch(QueryException $e)
         {
-            return response()->json(['message' => 'Failed to add animal to database: ' . $e->getMessage()], 500);
+            return json_encode(['message' => 'Failed to add animal to database: ' . $e->getMessage()], 500);
         }
         catch(InvalidArgumentException $e)
         {
-            return response()->json(['message' => 'An error has occured: ' . $e->getMessage()], 500);
+            return json_encode(['message' => 'An error has occured: ' . $e->getMessage()], 500);
         }
     }
 
@@ -109,7 +109,7 @@ class AnimalController extends Controller
         }
         catch (\Exception $e)
         {
-            return response()->json(['Message' => 'Animal not found'], 404);
+            return json_encode(['Message' => 'Animal not found'], 404);
         }
     }
 
@@ -158,11 +158,11 @@ class AnimalController extends Controller
         }
         catch(QueryException $e)
         {
-            return response()->json(['message' => 'Failed to update animal in database: ' . $e->getMessage()], 500);
+            return json_encode(['message' => 'Failed to update animal in database: ' . $e->getMessage()], 500);
         }
         catch(\Exception $e)
         {
-            return response()->json(['message' => 'Animal not found'], 404);
+            return json_encode(['message' => 'Animal not found'], 404);
         }
     }
 
@@ -186,7 +186,7 @@ class AnimalController extends Controller
         }
         catch(QueryException $e)
         {
-            return response()->json(['message' => 'Failed to delete animal in database: ' . $e->getMessage()], 500);
+            return json_encode(['message' => 'Failed to delete animal in database: ' . $e->getMessage()], 500);
         }
     }
 }

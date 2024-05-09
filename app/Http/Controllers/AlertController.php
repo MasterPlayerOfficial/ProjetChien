@@ -63,15 +63,15 @@ class AlertController extends Controller
             $mqtt = MQTT::connection();
             $mqtt->publish("alert", "trigger_end", 2, true);
             $mqtt->loop(true, true);
-            return response()->json(['message' => 'Alert updated successfully', 'data' => $alert], 200);
+            return json_encode(['message' => 'Alert updated successfully', 'data' => $alert], 200);
         }
         catch(QueryException $e)
         {
-            return response()->json(['message' => 'Failed to update alert in database: ' . $e->getMessage()], 500);
+            return json_encode(['message' => 'Failed to update alert in database: ' . $e->getMessage()], 500);
         }
         catch(\Exception $e)
         {
-            return response()->json(['message' => 'Alert not found'], 404);
+            return json_encode(['message' => 'Alert not found'], 404);
         }
     }
 }
