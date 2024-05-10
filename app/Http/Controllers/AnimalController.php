@@ -115,10 +115,10 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
-        Log::info("This works");
         try
         {
             $animals = Animal::all();
+            Log::info("This works");
             foreach($animals as $animal)
             {
                 if($animal->lost == 1)
