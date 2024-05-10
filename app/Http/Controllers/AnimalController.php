@@ -115,6 +115,7 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
+        Log::info("This works");
         try
         {
             $animals = Animal::all();
