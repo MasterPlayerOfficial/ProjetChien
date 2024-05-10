@@ -117,8 +117,9 @@ class AnimalController extends Controller
     {
         try
         {
-            $animals = Animal::all();
             Log::info("This works");
+            $animals = Animal::all();
+            Log::info("This also works");
             foreach($animals as $animal)
             {
                 if($animal->lost == 1)
