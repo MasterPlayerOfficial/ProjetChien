@@ -115,27 +115,18 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
-        try
+        $animals = Animal::all();
+        foreach($animals as $animal)
         {
-            Log::info("This works");
-            $animals = Animal::all();
-            Log::info("This also works");
-            foreach($animals as $animal)
+            if($animal->lost == 1)
             {
-                if($animal->lost == 1)
-                {
-                    $animal->lost = true;
-                }
-                else
-                {
-                    $animal->lost = false;
-                }
-                return json_encode($animals);
+                $animal->lost = true;
             }
-        }
-        catch (QueryException $e)
-        {
-            return json_encode(['Message' => 'An error has occured'], 500);
+            else
+            {
+                $animal->lost = false;
+            }
+            return json_encode($animals);
         }
     }
 
