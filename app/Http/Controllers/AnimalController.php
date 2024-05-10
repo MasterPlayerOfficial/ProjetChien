@@ -12,6 +12,8 @@ use App\Models\Alert;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
 
 class AnimalController extends Controller
 {
@@ -115,7 +117,7 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
-        $animals = Animal::all();
+        $animals = DB::table('animal')->get();
         foreach($animals as $animal)
         {
             if($animal->lost == 1)
