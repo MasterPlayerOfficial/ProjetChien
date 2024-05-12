@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Date;
 
 class AnimalSeeder extends Seeder
 {
@@ -15,7 +14,7 @@ class AnimalSeeder extends Seeder
     {
         DB::table('animal')->insert([
             'name' => Str::random(10),
-            'birth' => Date::random(),
+            'birth' => date::random(),
             'race' => Str::random(10),
             'color' => Str::random(10),
             'lost' => 0
