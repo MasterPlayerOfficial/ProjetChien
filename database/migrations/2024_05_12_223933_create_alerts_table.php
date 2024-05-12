@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alerts', function (Blueprint $table) {
+        Schema::create('alert', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('idAnimal')->constrained();
+            $table->boolean('inProgress');
+            $table->date('dateStart');
+            $table->date('dateEnd');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alerts');
+        Schema::dropIfExists('alert');
     }
 };

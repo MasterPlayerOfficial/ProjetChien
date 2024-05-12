@@ -20,6 +20,6 @@ class Alert extends Model
 
     public function animal()
     {
-        return $this->belongsTo('APP\Models\Animal', 'idAnimal');
+        return $this->belongsTo('App\Models\Animal', 'idAnimal');
     }
 }
