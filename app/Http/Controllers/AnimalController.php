@@ -117,7 +117,8 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
-        $animals = DB::table('animal')->get();
+        $animals = Animal::all();
+
         foreach($animals as $animal)
         {
             if($animal->lost == 1)
