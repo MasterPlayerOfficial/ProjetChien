@@ -103,6 +103,16 @@ class AnimalController extends Controller
         try
         {
             $animal = Animal::findOrFail($id);
+            
+            if ($animal->lost == 1)
+            {
+                $animal->lost = true;
+            }
+            else
+            {
+                $animal->lost = false;
+            }
+
             return $animal;
         }
         catch (\Exception $e)
