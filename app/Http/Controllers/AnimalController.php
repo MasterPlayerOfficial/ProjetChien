@@ -125,6 +125,7 @@ class AnimalController extends Controller
             {
                 $animal->lost = false;
             }
+
             return json_encode($animals);
         }
     }
