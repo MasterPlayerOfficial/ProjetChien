@@ -84,13 +84,9 @@ class AnimalController extends Controller
                 $animal->lost = 0;
             }
 
-            $saved = $animal->save();
-            if (!$saved)
-            {
-                throw new QueryException("The query was not executed");
-            }
+            $animal->save();
 
-            return json_encode($saved);
+            return json_encode(true);
         }
         catch(QueryException $e)
         {
