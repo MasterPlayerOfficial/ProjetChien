@@ -144,7 +144,7 @@ class AnimalController extends Controller
     {
         try
         {
-            $animal = Animal::findOrFail($id);
+            $animal = Animal::where('id', $id)->get();
             $newFields = $request->only(['name', 'birth', 'race', 'color', 'lost']);
 
             foreach($newFields as $oldFields => $value)
@@ -162,10 +162,6 @@ class AnimalController extends Controller
         catch(QueryException $e)
         {
             return json_encode(['message' => 'Failed to update animal in database: ' . $e->getMessage()], 500);
-        }
-        catch(\Exception $e)
-        {
-            return json_encode(['message' => 'Animal not found'], 404);
         }
     }
 
