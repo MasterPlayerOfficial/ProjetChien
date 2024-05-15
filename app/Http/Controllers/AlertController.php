@@ -55,7 +55,7 @@ class AlertController extends Controller
         {
             $alert = Alert::where('id', $id)->first();
             $alert->update([
-                'inProgress' => $request->inprogress,
+                'inProgress' => false,
                 'dateEnd' => Carbon::now()->format('Y-m-d')
             ]);
             $mqtt = MQTT::connection();
