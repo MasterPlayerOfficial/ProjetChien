@@ -122,7 +122,6 @@ class AnimalController extends Controller
 
         foreach($animals as $animal)
         {
-            Log::debug($animal);
             if($animal->lost == 1)
             {
                 $animal->lost = true;
@@ -131,9 +130,9 @@ class AnimalController extends Controller
             {
                 $animal->lost = false;
             }
-            Log::debug($animals);
-            return json_encode($animals);
         }
+
+        return json_encode($animals);
     }
 
     public function updateAnimal(Request $request, $id)
