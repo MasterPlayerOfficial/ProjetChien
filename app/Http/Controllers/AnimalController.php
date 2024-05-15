@@ -133,7 +133,6 @@ class AnimalController extends Controller
         try
         {
             $animal = Animal::where('id', $id)->first();
-            Log::debug($animal);
             $animal->update([
                 'name' => $request->name,
                 'birth' => Carbon::parse($request->birth)->format('Y-m-d'),

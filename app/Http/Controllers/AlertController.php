@@ -49,17 +49,15 @@ class AlertController extends Controller
         }
     }
 
-    public function updateAlert($id, Request $request)
+    public function updateAlert(Request $request, $id)
     {
         try
         {
-            $alert = Alert::findOrFail($id);
-            $newFields = $request->only(['inProgress', 'dateEnd']);
-
-            $alert->inProgress = $newFields['inProgress'];
-            $alert->dateEnd = Carbon::now()->format('Y-m-d');
-
-            $alert->save();
+            $alert = Alert::where('id', $id)->first();
+            $alert->update([
+                'inProgress' => $request->inprogress,
+                'dateEnd' => Carbon::now()->format('Y-m-d')
+            ]);
             $mqtt = MQTT::connection();
             $mqtt->publish("alert", "trigger_end", 2, true);
             $mqtt->loop(true, true);
