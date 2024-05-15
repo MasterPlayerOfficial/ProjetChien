@@ -140,17 +140,13 @@ class AnimalController extends Controller
         try
         {
             $animal = Animal::where('id', $id)->get();
-            $newFields = $request->only(['name', 'birth', 'race', 'color', 'lost']);
-
-            foreach($newFields as $field => $value)
-            {
-                if(!empty($value))
-                {
-                    $animal->$field = $value;
-                }
-            }
-
-            $animal->save();
+            $animal->update([
+                'name' => $request->name,
+                'birth' => $request->birth,
+                'race' => $request->race,
+                'color' => $request->color,
+                'lost' => $request->lost
+            ]);
 
             return json_encode(['message' => 'Animal updated successfully', 'data' => $animal], 200);
         }
