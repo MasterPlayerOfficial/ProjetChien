@@ -14,8 +14,7 @@ class Alert extends Model
     protected $fillable = [
         'idAnimal',
         'inProgress',
-        'dateStart',
-        'dateEnd'
+        'dateStart'
     ];
 
     public function animal()

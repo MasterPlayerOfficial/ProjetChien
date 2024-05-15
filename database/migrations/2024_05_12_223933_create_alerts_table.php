@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('idAnimal')->constrained();
             $table->boolean('inProgress');
             $table->date('dateStart');
-            $table->date('dateEnd');
             $table->timestamps();
         });
     }
