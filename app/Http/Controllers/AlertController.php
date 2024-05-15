@@ -20,7 +20,7 @@ class AlertController extends Controller
                 'idAnimal' => $request->input('idAnimal'),
                 'inProgress' => $request->boolean('inProgress'),
                 'dateStart' => Carbon::now()->format('Y-m-d'),
-                'dateEnd' => $request->input('dateEnd')
+                'dateEnd' => Carbon::now()->format('Y-m-d'),
             ]);
 
             $alert->save();
