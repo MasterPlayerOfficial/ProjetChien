@@ -69,14 +69,7 @@ class AnimalController extends Controller
                 }
             }
 
-            if($animal->lost = true)
-            {
-                $animal->lost = 1;
-            }
-            else
-            {
-                $animal->lost = 0;
-            }
+            $animal->lost = 0;
 
             Log::debug($animal);
 
@@ -139,10 +132,11 @@ class AnimalController extends Controller
     {
         try
         {
-            $animal = Animal::where('id', $id)->get();
+            $animal = Animal::where('id', $id)->first();
+            Log::debug($animal);
             $animal->update([
                 'name' => $request->name,
-                'birth' => $request->birth,
+                'birth' => Carbon::parse($request->birth)->format('Y-m-d'),
                 'race' => $request->race,
                 'color' => $request->color,
                 'lost' => $request->lost
@@ -152,6 +146,7 @@ class AnimalController extends Controller
         }
         catch(QueryException $e)
         {
+            Log::debug($e->getMessage());
             return json_encode(['message' => 'Failed to update animal in database: ' . $e->getMessage()], 500);
         }
     }
