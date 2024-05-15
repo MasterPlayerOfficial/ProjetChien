@@ -10,6 +10,8 @@ use App\Models\Alert;
 
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Log;
+
 class AlertController extends Controller
 {
     public function addAlert(Request $request)
@@ -41,6 +43,8 @@ class AlertController extends Controller
         try
         {
             $alert = Alert::where('id', $id)->where('inProgress', true)->first();
+            Log::debug($alert);
+            $alert->inProgress = true;
             return $alert;
         }
         catch (\Exception $e)
