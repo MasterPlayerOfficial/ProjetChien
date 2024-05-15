@@ -147,7 +147,7 @@ class AnimalController extends Controller
             $animal = Animal::where('id', $id)->get();
             $newFields = $request->only(['name', 'birth', 'race', 'color', 'lost']);
 
-            foreach($newFields as $oldFields => $value)
+            foreach($newFields as $field => $value)
             {
                 if(!empty($value))
                 {
