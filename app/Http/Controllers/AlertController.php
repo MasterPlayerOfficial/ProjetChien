@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
-use PhpWqtt\Client\Facades\MQTT;
+use PhpMqtt\Client\Facades\MQTT;
 
 use App\Models\Alert;
 
