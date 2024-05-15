@@ -81,7 +81,7 @@ class AnimalController extends Controller
             Log::debug($animal);
 
             $animal->save();
-            return json_encode(['message' => 'Animal successfully added to database'], 200);
+            return response()->json(true);
         }
         catch(QueryException $e)
         {
