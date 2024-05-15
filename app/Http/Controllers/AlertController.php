@@ -18,7 +18,7 @@ class AlertController extends Controller
         {
             $alert = new Alert([
                 'idAnimal' => $request->input('idAnimal'),
-                'inProgress' => $request->boolean('inProgress'),
+                'inProgress' => true,
                 'dateStart' => Carbon::now()->format('Y-m-d'),
                 'dateEnd' => Carbon::now()->format('Y-m-d'),
             ]);
@@ -28,7 +28,7 @@ class AlertController extends Controller
             $mqtt->publish("alert", "trigger_start", 2, true);
             $mqtt->loop(true, true);
 
-            return json_encode(true);
+            return response()->json(true);
         }
         catch(QueryException $e)
         {
