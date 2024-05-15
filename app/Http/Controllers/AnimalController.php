@@ -21,14 +21,8 @@ class AnimalController extends Controller
     {
         $pattern = "/[0-9]/";
         $result = preg_match($pattern, $str);
-        if($result = 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        Log::debug($result);
+        return $result;
     }
 
     public function addAnimal(Request $request)
@@ -84,8 +78,9 @@ class AnimalController extends Controller
                 $animal->lost = 0;
             }
 
-            $animal->save();
+            Log::debug($animal);
 
+            $animal->save();
             return json_encode(['message' => 'Animal successfully added to database'], 200);
         }
         catch(QueryException $e)
@@ -127,6 +122,7 @@ class AnimalController extends Controller
 
         foreach($animals as $animal)
         {
+            Log::debug($animal);
             if($animal->lost == 1)
             {
                 $animal->lost = true;
@@ -135,7 +131,7 @@ class AnimalController extends Controller
             {
                 $animal->lost = false;
             }
-
+            Log::debug($animals);
             return json_encode($animals);
         }
     }
