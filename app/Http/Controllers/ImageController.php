@@ -10,6 +10,7 @@ class ImageController extends Controller
 {
     public function uploadImageToServer(Request $request)
     {
+        Log::debug($request);
         $imageData = $request->input('image_data');
         Log::debug($imageData);
         $imageExtracted = json_decode($imageData);
