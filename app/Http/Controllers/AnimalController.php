@@ -33,7 +33,8 @@ class AnimalController extends Controller
                 'birth' => $request->input('birth'),
                 'race' => $request->input('race'),
                 'color' => $request->input('color'),
-                'lost' => $request->boolean('lost')
+                'lost' => $request->boolean('lost'),
+                'picture' => $request->input('picture')
             ]);
 
             if($animal->name != null)
@@ -137,7 +138,8 @@ class AnimalController extends Controller
                 'birth' => Carbon::parse($request->birth)->format('Y-m-d'),
                 'race' => $request->race,
                 'color' => $request->color,
-                'lost' => $request->lost
+                'lost' => $request->lost,
+                'picture' => $request->picture
             ]);
 
             return json_encode(['message' => 'Animal updated successfully', 'data' => $animal], 200);

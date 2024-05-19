@@ -16,6 +16,7 @@ class Animal extends Model
         'birth',
         'race',
         'color',
-        'lost'
+        'lost',
+        'picture'
     ];
 }

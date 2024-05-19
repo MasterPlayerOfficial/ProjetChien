@@ -18,6 +18,7 @@ return new class extends Migration
             $table->String('race');
             $table->String('color');
             $table->boolean('lost');
+            $table->String('picture');
             $table->timestamps();
         });
     }
