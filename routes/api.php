@@ -9,6 +9,8 @@ use App\Http\Controllers\AnimalController;
 use App\Models\Alert;
 use App\Http\Controllers\AlertController;
 
+use App\Http\Controllers\ImageController;
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -20,3 +22,5 @@ Route::put('/animal/{id}', [AnimalController::class, 'updateAnimal']);
 Route::delete('/animal/{id}', [AnimalController::class, 'deleteAnimal']);
 
 Route::post('/alert', [AlertController::class, 'addAlert']);
+
+Route::post('/image', [ImageController::class, 'uploadImageToServer']);
