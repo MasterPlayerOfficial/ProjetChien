@@ -26,6 +26,7 @@ class AnimalController extends Controller
 
     public function addAnimal(Request $request)
     {
+        Log::debug($request->getRequestUri());
         try
         {
             $animal = new Animal([
@@ -70,8 +71,6 @@ class AnimalController extends Controller
             }
 
             $animal->lost = 0;
-
-            Log::debug($animal);
 
             $animal->save();
             return response()->json(true);
@@ -131,7 +130,7 @@ class AnimalController extends Controller
 
     public function updateAnimal(Request $request, $id)
     {
-        Log::debug($request);
+        Log::debug($request->getRequestUri());
         try
         {
             $animal = Animal::where('id', $id)->first();

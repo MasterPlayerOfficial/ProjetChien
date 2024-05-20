@@ -23,4 +23,4 @@ Route::delete('/animal/{id}', [AnimalController::class, 'deleteAnimal']);
 
 Route::post('/alert', [AlertController::class, 'addAlert']);
 
-Route::post('/image', [ImageController::class, 'uploadImageToServer']);
+Route::post('/imageUpload', [ImageController::class, 'uploadImage']);
