@@ -111,6 +111,7 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
+        Log::debug("Test");
         $animals = Animal::all();
 
         foreach($animals as $animal)
@@ -130,6 +131,7 @@ class AnimalController extends Controller
 
     public function updateAnimal(Request $request, $id)
     {
+        Log::debug($request);
         try
         {
             $animal = Animal::where('id', $id)->first();
