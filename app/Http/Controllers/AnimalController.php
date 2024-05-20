@@ -24,17 +24,14 @@ class AnimalController extends Controller
         return $result;
     }
 
-    public function uploadImage(Request $request)
+    public function uploadImage(String $imageData)
     {
-        Log::debug($request->getRequestUri());
         try
         {
-            Log::debug($request);
-        $imageData = $request->input('picture');
-        Log::debug($imageData);
-        $imageExtracted = json_decode($imageData);
-        $nameOfImage = 'image_' . time() . '.png';
-        file_put_contents(public_path('img/' . $nameOfImage), $imageExtracted);
+            Log::debug($imageData);
+            $imageExtracted = json_decode($imageData);
+            $nameOfImage = 'image_' . time() . '.png';
+            file_put_contents(public_path('img/' . $nameOfImage), $imageExtracted);
         }
         catch (\Exception $e)
         {
@@ -91,7 +88,11 @@ class AnimalController extends Controller
 
             $animal->lost = 0;
 
-            $trueFilePath = self::uploadImage($animal->picture);
+            $trueFilePath = null;
+            if($animal->picture != null)
+            {
+                $trueFilePath = self::uploadImage($animal->picture);
+            }
             $animal->picture = $trueFilePath;
 
             $animal->save();
@@ -156,13 +157,20 @@ class AnimalController extends Controller
         try
         {
             $animal = Animal::where('id', $id)->first();
+            $filePath = null;
+
+            if($request->picture != null)
+            {
+                $filepath = self::uploadImage($request->picture);
+            }
+
             $animal->update([
                 'name' => $request->name,
                 'birth' => Carbon::parse($request->birth)->format('Y-m-d'),
                 'race' => $request->race,
                 'color' => $request->color,
                 'lost' => $request->lost,
-                'picture' => $request->picture
+                'picture' => $filePath
             ]);
 
             return json_encode(['message' => 'Animal updated successfully', 'data' => $animal], 200);
