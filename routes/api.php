@@ -9,7 +9,7 @@ use App\Http\Controllers\AnimalController;
 use App\Models\Alert;
 use App\Http\Controllers\AlertController;
 
-//use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ImageController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -23,4 +23,4 @@ Route::delete('/animal/{id}', [AnimalController::class, 'deleteAnimal']);
 
 Route::post('/alert', [AlertController::class, 'addAlert']);
 
-//Route::post('/imageUpload', [ImageController::class, 'uploadImage']);
+Route::post('/imageUpload', [ImageController::class, 'uploadImage']);
