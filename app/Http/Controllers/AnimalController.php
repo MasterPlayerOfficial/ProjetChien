@@ -148,7 +148,6 @@ class AnimalController extends Controller
 
     public function updateAnimal(Request $request, $id)
     {
-        Log::debug($request->getRequestUri());
         try
         {
             $animal = Animal::where('id', $id)->first();
