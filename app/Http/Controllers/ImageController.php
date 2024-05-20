@@ -14,11 +14,13 @@ class ImageController extends Controller
         try
         {
             Log::debug($request);
-        $imageData = $request->input('picture');
+        $imageData = $request->file('part');
         Log::debug($imageData);
-        $imageExtracted = json_decode($imageData);
+        //$imageExtracted = json_decode($imageData);
         $nameOfImage = 'image_' . time() . '.png';
-        file_put_contents(public_path('img/' . $nameOfImage), $imageExtracted);
+        file_put_contents(public_path('img/' . $nameOfImage), $imageData);
+
+        return response()->json($nameOfImage);
         }
         catch (\Exception $e)
         {

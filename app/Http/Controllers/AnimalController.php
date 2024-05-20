@@ -91,13 +91,6 @@ class AnimalController extends Controller
 
             $animal->lost = 0;
 
-            $trueFilePath = null;
-            if($animal->picture != null)
-            {
-                $trueFilePath = self::uploadImage($animal->picture);
-            }
-            $animal->picture = $trueFilePath;
-
             $animal->save();
             return response()->json(true);
         }
@@ -159,12 +152,6 @@ class AnimalController extends Controller
         try
         {
             $animal = Animal::where('id', $id)->first();
-            $filePath = null;
-
-            if($request->picture != null)
-            {
-                $filepath = self::uploadImage($request->picture);
-            }
 
             $animal->update([
                 'name' => $request->name,
@@ -172,7 +159,7 @@ class AnimalController extends Controller
                 'race' => $request->race,
                 'color' => $request->color,
                 'lost' => $request->lost,
-                'picture' => $filePath
+                'picture' => $request->picture
             ]);
 
             return json_encode(['message' => 'Animal updated successfully', 'data' => $animal], 200);
