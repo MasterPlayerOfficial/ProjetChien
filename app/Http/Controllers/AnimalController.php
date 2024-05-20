@@ -26,18 +26,21 @@ class AnimalController extends Controller
 
     public function uploadImage(String $imageData)
     {
+        $fileName = '';
         try
         {
             Log::debug($imageData);
             $imageExtracted = json_decode($imageData);
-            $nameOfImage = 'image_' . time() . '.png';
-            file_put_contents(public_path('img/' . $nameOfImage), $imageExtracted);
+            Log::debug($imageExtracted);
+            $fileName = 'image_' . time() . '.jpg';
+            file_put_contents(public_path('img/' . $fileName), $imageExtracted);
         }
         catch (\Exception $e)
         {
             Log::debug($e);
             return response()->json("Something went wrong");
         }
+        return $fileName;
     }
 
     public function addAnimal(Request $request)
