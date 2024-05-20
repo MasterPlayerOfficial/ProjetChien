@@ -30,7 +30,7 @@ class AnimalController extends Controller
         try
         {
             Log::debug($imageData);
-            $imageExtracted = json_decode($imageData);
+            $imageExtracted = base64_decode($imageData);
             Log::debug($imageExtracted);
             $fileName = 'image_' . time() . '.jpg';
             file_put_contents(public_path('img/' . $fileName), $imageExtracted);
@@ -136,7 +136,6 @@ class AnimalController extends Controller
 
     public function getAllAnimals()
     {
-        Log::debug("Test");
         $animals = Animal::all();
 
         foreach($animals as $animal)
