@@ -14,7 +14,7 @@ class ImageController extends Controller
         try
         {
             Log::debug($request);
-        $imageData = $request->input('image_data');
+        $imageData = $request->input('picture');
         Log::debug($imageData);
         $imageExtracted = json_decode($imageData);
         $nameOfImage = 'image_' . time() . '.png';
